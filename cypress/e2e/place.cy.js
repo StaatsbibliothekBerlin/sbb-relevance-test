@@ -41,7 +41,7 @@ describe('Publishing Place', () => {
     })
 
     // see multi-lang-phrase.cy.js
-    describe.only('geschichte berlin', () => {
+    describe('geschichte berlin', () => {
         beforeEach(() => {
             cy.visit({
                 url: '/Results',

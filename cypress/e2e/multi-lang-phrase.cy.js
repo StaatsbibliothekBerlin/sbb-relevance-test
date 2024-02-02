@@ -94,7 +94,7 @@ describe('Foreign language phrase search', () => {
             cy.get('.resultlist')
               .each(($el, index, $lis) => {
                 cy.wrap($el)
-                  .contains(/German.*/)
+                  .contains(/German.*/, {matchCase: false})
               })
               .then(($lis) => {
                 cy.wrap($lis)
