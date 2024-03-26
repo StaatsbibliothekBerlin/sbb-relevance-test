@@ -522,8 +522,11 @@ ShelfMark:
   DismaxHandler: edismax
 
 Provenience:
+  DismaxMunge:
+    # Add isil DE-1@
+    - [preg_replace, '/^./', 'DE-1@$0']
   DismaxFields:
-    - provenience_txtP_mv
+    - provenience_isil_txtP_mv
   DismaxHandler: edismax
 
 # These are advanced searches that never use Dismax:
