@@ -12,7 +12,7 @@ describe('Author Search', () => {
         })
 
         // erster Treffer von Autorin
-        it('first hit should be by the author', {tags: ['@next']}, () => {
+        it('first hit should be by the author', () => {
             cy.get('#result0')
                 .find('.resultlist-data')
                 .contains(/(?=.*Karin)(?=.*Glaser)/)
@@ -32,7 +32,7 @@ describe('Author Search', () => {
         })
 
         // see #22
-        it('CJK author search should return translations', {tags: ['@next']}, () => {
+        it('CJK author search should return translations', () => {
             cy.get('.record-list')
               .contains('Yan, Lianke')
         })
@@ -158,17 +158,13 @@ describe('Author Search', () => {
             } else {
                 cy.get($el)
                   .click()
-                cy.get('.long-view')
-                  .find('a[id^=description_]')
-                  .click()
-                cy.get('.additional')
+                cy.get('.detail-data')
                   .contains('Heaviside', {matchCase: false})
-            }
-                  
-              })
-              
+            }       
+            })    
         })
     })
+
 
     describe('Elfriede Jelinek', () => {
         beforeEach(() => {

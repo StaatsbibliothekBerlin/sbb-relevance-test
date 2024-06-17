@@ -80,33 +80,9 @@ Mit GUI:
 npx cypress open
 ```
 
-Per Default laufen die Tests gegen den [Ranking1](http://stabikat-ranking1/). Die `searchspecs.yml` befindet sich im Verzeichnis: `/var/www/vufind/local/config/vufind`
+Per Default laufen die Tests gegen den [Ranking1](http://stabikat-ranking1/) testserver. Die `searchspecs.yml` befindet sich im Verzeichnis: `/var/www/vufind/local/config/vufind`
 
-### Tagging
-
-Zur besseren Organisation der Tests via tags:
-
-- `@next` für Tests die in der Testinstanz laufen, aber noch nicht im produktivem Stabikat
-
-  ```js
-  // This works on test environment but not on stabi
-  it('CJK author search should return translations', {tags: ['@next']}, () => {
-    cy.get('.record-list')
-      .contains('Yan, Lianke')
-    })
-
-  // This works on both
-  it('CJK author search should match latinized family name', () => {
-    cy.get('.record-list')
-      .contains('Yan')
-    })  
-  ```
-
-Wenn die nötigen Änderungen der `searchpsec.yaml` im Stabikat live gegangen sind, müssen die entsprechenden `@next` Tags entfernt werden.
-
-Für Tests die in beiden Instanzen (noch) nicht laufen: `.skip`
-
-Für die Reproduktion der CI Testläufe gegen den produktiven Stabikat der `simple.cs.js` spec:
+Für die Reproduktion der CI Testläufe gegen den produktiven Stabikat z.Bsp der `simple.cs.js` spec:
 
 - Ändere `BASE_URL` zum [Stabikat](https://stabikat.de)
 - Spezifiziere welche Testdatei via `--spec`, und
@@ -122,6 +98,37 @@ npx cypress open --config baseUrl=https://stabikat.de/search/ --env grepUntagged
 
 Für weitere Optionen siehe [Cypress command-line](https://docs.cypress.io/guides/guides/command-line)
 
+### Tagging
+
+Für offene issues, mit Test die in beiden Instanzen (noch) nicht laufen nutze: `.skip`.
+Tests die auf dem Testserver grün sind, aber im produktiven Stabikat rot werden durch den `@next` tag gekennzeichnet:
+
+- `@next`
+  
+  ```js
+  // This works on test environment but not on stabi
+  it('CJK author search should return translations', {tags: ['@next']}, () => {
+    cy.get('.record-list')
+      .contains('Yan, Lianke')
+    })
+
+  // This works on both
+  it('CJK author search should match latinized family name', () => {
+    cy.get('.record-list')
+      .contains('Yan')
+    })  
+  ```
+
+### Release
+
+Wenn die nötigen Änderungen der `searchpsec.yaml` im Stabikat live gegangen sind, müssen die entsprechenden `@next` Tags entfernt werden. Folgender Befehl führ nur die tests mit tag aus:
+
+```shell
+npx cypress run --config baseUrl=https://stabikat.de/search/ --env grepTags=@next
+```
+
+Anschliessend bei allen grünen Tests den Tag entfernen.
+
 ## Yaml Prüfung
 
 Um die yaml Dateien im `vufind/` Ordner auf Syntaxfehler zu überprüfen:
@@ -133,6 +140,8 @@ npm run lint
 Dieser Test wird auf GitHub automatisch ausgeführt.
 
 ## Troubleshooting
+
+Die Datei `cypress/e2e/simple.cy.js` beinhaltet einen Selbsttest. Zur Prolembehebung können diese *unskipped* werden.
 
 ### Cypress Browser Warning
 

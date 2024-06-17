@@ -350,7 +350,7 @@ describe('Chronology', () => {
         })
     })
 
-    describe('future publication', {tags: ['@next']}, () => {
+    describe('future publication', () => {
         // see #58
         // run a query for publications 5 years from noww
         beforeEach(() => {
