@@ -245,26 +245,15 @@ Author:
     - author_os_txtP_mv
   DismaxHandler: edismax
   DismaxParams:
-  #   - [bq, format:eJournal^237]
-  #   - [bq, format:Journal^284]
-  #   - [bq, format:eBook^255]
-  #   - [bq, format:Book^500]
-  #   - [bq, format:Article^620]
-  #   - [bq, format:"electronic+Article"^620]
-  #   - [bq, format_facet:"Serienband"^0.1]
+    - [bq, format:eJournal^237]
+    - [bq, format:Journal^284]
+    - [bq, format:eBook^255]
+    - [bq, format:Book^500]
+    - [bq, format:Article^620]
+    - [bq, format:"electronic+Article"^620]
+    - [bq, format_facet:"Serienband"^0.1]
     
-    - [bq, publishDateSort:2023^90]
-    - [bq, publishDateSort:2022^80]
-    - [bq, publishDateSort:2021^70]
-    - [bq, publishDateSort:2020^60]
-    - [bq, publishDateSort:2019^50]
-    - [bq, publishDateSort:2018^45]
-    - [bq, publishDateSort:2017^40]
-    - [bq, publishDateSort:2016^35]
-    - [bq, publishDateSort:2015^30]
-    - [bq, publishDateSort:2014^25]
-    - [bq, publishDateSort:2013^20]
-    - [bq, publishDateSort:2024^100]  
+    - [bf, 'ord(publishDateSort)^100']
   
  #Verbesserte Phrasensuche, eWW
 QueryFields:
@@ -329,18 +318,8 @@ Subject:
     - [bq, format:"electronic+Article"^620]
     - [bq, format_facet:"Serienband"^0.1]
     
-    - [bq, publishDateSort:2023^1280]
-    - [bq, publishDateSort:2022^1260]
-    - [bq, publishDateSort:2021^1240]
-    - [bq, publishDateSort:2020^1220]
-    - [bq, publishDateSort:2019^1200]
-    - [bq, publishDateSort:2018^1180]
-    - [bq, publishDateSort:2017^1160]
-    - [bq, publishDateSort:2016^1150]
-    - [bq, publishDateSort:2015^1140]
-    - [bq, publishDateSort:2014^1130]
-    - [bq, publishDateSort:2013^1120]
-    - [bq, publishDateSort:202*^1500]
+    - [bf, 'ord(publishDateSort)^1500']
+    
   DismaxHandler: edismax
 
 Keyword:
@@ -376,6 +355,7 @@ JournalTitle:
   DismaxParams:
     - [bq,format:Journal^200]
     - [bq,format:eJournal^100]
+    - [bf, 'ord(publishDateSort)^500']
   DismaxHandler: edismax
   FilterQuery: "format:Journal OR format:eJournal"
 #  ExactSettings:
@@ -429,20 +409,20 @@ AllFields:
 #   - series2^30
     - author^200
     - author_os_txtP_mv^200
-#   - authorswithroles_txt_mv^300    
-    - contents^0.01
+    - authorswithroles_txt_mv^300    
+    # - contents^0.01
     - topic_title^150
     - topic_unstemmed^150
     - topic^150
-    # - geographic^300
-    # - class^240
+    - geographic^300
+    - class^240
     - bklname
     - genre
-    - allfields_unstemmed^0.01
-    - fulltext_unstemmed^0.01
-    # - allfields
-    # - fulltext
-    - description^0.01
+    # - allfields_unstemmed^0.01
+    # - fulltext_unstemmed^0.01
+    # - allfields^0.01
+   # - fulltext
+   # - description^0.01
     - isbn
     - issn
     # - long_lat_display
